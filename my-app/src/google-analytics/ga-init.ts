@@ -1,19 +1,18 @@
-import ReactGA from 'react-ga4  ';
+import ReactGA from 'react-ga4';
 import generateClientIdGa from './ga-generate-client-id';
-import { logErrorRef } from 'src/providers/NRBrowserAgentProvider';
 
 enum HitTypes {
     PageView = "pageview",
     Event = "event"
 }
 
-const trackingId = import.meta.env.VITE_GA_ID
+const trackingId = "<GA_ID>"
 
 const ga = {
     initGoogleAnalytics() {
 
         if (!trackingId) {
-            logErrorRef(
+            console.log(
                 "No GA_ID is found for Google Analytics",
                 { "GA_ID": trackingId }
             )
@@ -30,7 +29,7 @@ const ga = {
             ]);
 
         } catch (error) {
-            logErrorRef(
+            console.log(
                 "Error initializing Google Analytics",
                 { "Error": error }
             )
