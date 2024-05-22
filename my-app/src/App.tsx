@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import { useEffect } from 'react';
-import ga from './google-analytics/ga-init';
+import ga from './providers/ga-init';
 
 const App: React.FC = () => {
   const location = useLocation();
