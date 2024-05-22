@@ -8,4 +8,3 @@ const GAInitializer: React.FC<PropsWithChildren<{}>> = ({ children }) => {
 }
 
 export default GAInitializer;
- 
