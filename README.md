@@ -17,17 +17,13 @@ We're using an object to handle GA integration for flexibility and future-proofi
 
 `App.tsx` modify your file by add `GoogleAnalyticsProvider` component 
 
-**This approach allows us to:** :recycle: 
+**Why This Approach?** :recycle: 
 
 * Support multiple: functionalities, easily manage page views, event tracking, and post-initialization configurations.
 
 * Future proofing: If we switch from ReactGA to another solution (e.g., a future GA version), we only need to update this object, not every instance in our codebase.
 
-**Why This Approach?**
-
 * React Way: This method aligns with React’s best practices by using a component to handle side effects.
-
-* Future-Proofing: Wrapping the App component with GAInitializer means that any changes to GA initialization only need to be made in one place.
 
 ## Comments In the code
 Search it on the App `// Recommend:` and `// Remark:` to understand logic and getting the implantation better in your App!
