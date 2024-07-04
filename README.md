@@ -29,8 +29,8 @@ Future-Proofing: Wrapping the App component with GAInitializer means that any ch
 
 Automatic Page View Tracking //TODO: explain
 
-## TODO's comments
-....
+## Recommend And Remark Comments
+search it on the App for getting the implantation better
 
 ## references
 ....

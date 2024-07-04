@@ -4,11 +4,11 @@ import ReactGA from 'react-ga4';
 // Recommend: implement it with env variables to keep it as a secret 
 export const trackingId = "GA_ID"
 const appVersion = "APP_VERSION"
+// Remark: use user ID in your app to make the analyze better
+// Recommend: implement it with Redux 
+const id = "user-id"
 
 const useGoogleAnalytics = () => {
-  // Remark: use user ID in your app to make the analyze better
-  // Recommend: implement it with Redux 
-  const id = "user-id"
 
   useEffect(() => {
     if (trackingId) {
@@ -24,10 +24,11 @@ const useGoogleAnalytics = () => {
         ]);
         ReactGA.set({ app_version: appVersion });
       } catch (error) {
-       console.log("Error initializing Google Analytics", { Error: error });
+        // Recommend: reporting this error to an error tracking service
+        console.log("Error initializing Google Analytics", { Error: error });
       }
     }
-  }, []);
+  }, [id]);
 
   const setOption = (key: string, value: unknown) => {
     ReactGA.set({ [key]: value });
