@@ -1,56 +1,66 @@
-# Google Analytics with React Typescript
+# Google Analytics With React Typescript
 
-## Overview
+## Overview :eyes:
+### what is GA :interrobang: :hushed:
+Google Analytics (GA) is a powerful tool for tracking and analyzing website traffic and user behavior.
 
-Google Analytics (GA) is a powerful tool for tracking and analyzing website traffic and user behavior. Here's how it operates:
+ **Here's how it operates:**
 
 GA collects data from your website using a JavaScript tracking code that you embed in your site’s pages. This code gathers information about your visitors and sends it to Google's servers, where it is processed and made available in various reports.
 
-## How does it work?
+## How's the implematneion Work?
 
-ga-init.ts is the primary file for integrating with Google Analytics.
+`useGoogleAnalytics.ts`  as custom hook is the **primary** file for integrating with GA.
 We're using an object to handle GA integration for flexibility and future-proofing.
 
- This approach allows us to:
+**This approach allows us to:** :recycle: 
 
-Support Multiple Functionalities: Easily manage page views, event tracking, and post-initialization configurations.
+* Support multiple: functionalities, easily manage page views, event tracking, and post-initialization configurations.
 
-Future-Proofing: If we switch from ReactGA to another solution (e.g., a future GA version), we only need to update this object, not every instance in our codebase.
+* Future proofing: If we switch from ReactGA to another solution (e.g., a future GA version), we only need to update this object, not every instance in our codebase.
 
-_____________________________________________________________________________________________________
+**Why This Approach?**
 
-By creating a GAInitializer and GARouteChangeTrackercomponents, We initialize GA and then render its children, ensuring that GA is set up as soon as the app is created at main.tsx, and ensuring it logs page views whenever the route changes at App.tsx.
+* React Way: This method aligns with React’s best practices by using a component to handle side effects.
 
-Why This Approach?
+* Future-Proofing: Wrapping the App component with GAInitializer means that any changes to GA initialization only need to be made in one place.
 
-React Way: This method aligns with React’s best practices by using a component to handle side effects.
+## Comments In th code
+Search it on the App `// Recommend:` and `// Remark:` to understand logic and getting the implantation better in your App!
 
-Future-Proofing: Wrapping the App component with GAInitializer means that any changes to GA initialization only need to be made in one place.
 
-Automatic Page View Tracking //TODO: explain
+## 2 Ways Of Implementation
 
-## Recommend And Remark Comments
-search it on the App for getting the implantation better
+### 1 . General Tracking (the current repo) :sunglasses:
 
-## references
-....
+:muscle: **Pros:**
+* Simple Initialization: Your setup ensures that Google Analytics is initialized only once when the GAInitializer component mounts.
+* Page View Tracking: By providing a method to track page views, you can manually ensure that each page visit is logged.
+* Custom Events: The trackEventBuilder method offers flexibility to track various user interactions.
 
-## 2 Ways of of implementation
-....
+:-1: **Cons:**
+* Manual Page View Tracking: Since you're only wrapping the App component and not each route change, you must manually call trackPageView on each route change, which is prone to human error if forgotten.
+* Lack of Route Change Tracking: Without automatic tracking of route changes, you might miss logging some page views if trackPageView is not called explicitly in each component.
+* Limited User Context: Your implementation does not track detailed user interactions or demographic data beyond what GA collects by default.
 
-### General Tracking
-#### Relevant files //TODO: add 
-Pros and Cons of general Implementation
+### 2. Add Event Tracking Function To EVERY Event We Want To Track :sleeping:
 
-Pros:
-Simple Initialization: Your setup ensures that Google Analytics is initialized only once when the GAInitializer component mounts.
-Page View Tracking: By providing a method to track page views, you can manually ensure that each page visit is logged.
-Custom Events: The trackEventBuilder method offers flexibility to track various user interactions.
+:muscle: **Pros:**
 
-Cons:
-Manual Page View Tracking: Since you're only wrapping the App component and not each route change, you must manually call trackPageView on each route change, which is prone to human error if forgotten.
-Lack of Route Change Tracking: Without automatic tracking of route changes, you might miss logging some page views if trackPageView is not called explicitly in each component.
-Limited User Context: Your implementation does not track detailed user interactions or demographic data beyond what GA collects by default.
+* Granular Control: you have precise control over exactly which events are tracked and how they are labeled, allowing for very detailed and specific analytics data.
+* Customization: each event can be customized with specific category, action, label, and value, providing rich insights into user behavior and interactions.
 
-### Add Event Tracking Function To Events
-#### Relevant files //TODO: add 
+:-1: **Cons:**
+
+* Maintenance Overhead: as your application grows, managing numerous individual tracking calls can become time-consuming and difficult to maintain consistently.
+* Code Duplication: you might end up repeating similar tracking code across multiple components or functions, leading to less DRY (Don't Repeat Yourself) code.
+
+## References :copyright:
+
+
+[Medium: 'Implementing Google Analytics to React with TypeScript'](https://undercontr.medium.com/implementing-google-analytics-to-react-with-typescript-d36909726b38)
+
+
+[YouTube: 'Add Google Analytics in React JS'](https://www.youtube.com/watch?v=iX0nulueBvU)
+
+
