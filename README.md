@@ -25,7 +25,7 @@ We're using an object to handle GA integration for flexibility and future-proofi
 
 * Future-Proofing: Wrapping the App component with GAInitializer means that any changes to GA initialization only need to be made in one place.
 
-## Comments In th code
+## Comments In the code
 Search it on the App `// Recommend:` and `// Remark:` to understand logic and getting the implantation better in your App!
 
 
@@ -54,6 +54,11 @@ Search it on the App `// Recommend:` and `// Remark:` to understand logic and ge
 
 * Maintenance Overhead: as your application grows, managing numerous individual tracking calls can become time-consuming and difficult to maintain consistently.
 * Code Duplication: you might end up repeating similar tracking code across multiple components or functions, leading to less DRY (Don't Repeat Yourself) code.
+
+## Content Security Policy (CSP) :oncoming_police_car:
+
+To implement GA, include the GA script in your web application and set up tracking in your code. Configure your CSP to allow connections to GA servers by adding 'https://www.google-analytics.com' to your script-src and connect-src directives. If using Google Tag Manager, also include 'https://www.googletagmanager.com' in your script-src directive, and always test your CSP configuration thoroughly.
+
 
 ## References :copyright:
 
