@@ -1,44 +1,31 @@
 import { useEffect } from 'react';
 import ReactGA from 'react-ga4';
-import { v4 as uuidv4 } from 'uuid';
 
-enum HitTypes {
-    PageView = "pageview",
-}
-
-const trackingId = "<GA_ID>";
-const gaClientStorageKey = "ga-gtag-client-id";
-
-const generateClientIdGa = () => {
-    let clientId = localStorage.getItem(gaClientStorageKey);
-    
-    if (!clientId) {
-        clientId = uuidv4();
-        localStorage.setItem(gaClientStorageKey, clientId);
-    }
-
-    return clientId;
-};
+// Recommend: implement it with env variables to keep it as a secret 
+export const trackingId = "GA_ID"
+const appVersion = "APP_VERSION"
 
 const useGoogleAnalytics = () => {
+  // Remark: use user ID in your app to make the analyze better
+  // Recommend: implement it with Redux 
+  const id = "user-id"
 
   useEffect(() => {
-    if (!trackingId) {
-      console.log("No GA_ID is found for Google Analytics", { GA_ID: trackingId });
-      return;
-    }
-    try {
-      ReactGA.initialize([
-        {
-          trackingId,
-          gaOptions: {
-            anonymizeIp: true,
-            clientId: generateClientIdGa()
+    if (trackingId) {
+      try {
+        ReactGA.initialize([
+          {
+            trackingId,
+            gaOptions: {
+              anonymizeIp: true,
+              clientId: id
+            }
           }
-        }
-      ]);
-    } catch (error) {
-      console.log("Error initializing Google Analytics", { Error: error });
+        ]);
+        ReactGA.set({ app_version: appVersion });
+      } catch (error) {
+       console.log("Error initializing Google Analytics", { Error: error });
+      }
     }
   }, []);
 
@@ -50,21 +37,21 @@ const useGoogleAnalytics = () => {
     setOption("userId", userId);
   };
 
-  const sendData = (type: HitTypes, data: Object) => {
+  const sendData = (type: string, data: Object) => {
     ReactGA.send({ hitType: type, ...data });
   };
 
-  const trackPageView = ( pagePath?: string) => {
-
-
+  const trackPageView = (pagePath?: string) => {
     if (!pagePath) {
       pagePath = location.href;
     }
 
-    sendData(HitTypes.PageView, { page: pagePath });
+    setOption('app_version', appVersion);
+    sendData("pageview", { page: pagePath });
   };
 
   const trackEvent = (category: string, action: string, label?: string, value?: number) => {
+    setOption('app_version', appVersion);
     ReactGA.event({ category, action, label, value });
   };
 
