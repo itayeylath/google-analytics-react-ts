@@ -1,14 +1,14 @@
 # Google Analytics With React Typescript
 
 ## Overview :eyes:
-### what is GA :interrobang: :hushed:
+### What is GA :interrobang: :hushed:
 Google Analytics (GA) is a powerful tool for tracking and analyzing website traffic and user behavior.
 
  **Here's how it operates:**
 
 GA collects data from your website using a JavaScript tracking code that you embed in your site’s pages. This code gathers information about your visitors and sends it to Google's servers, where it is processed and made available in various reports.
 
-## How's the implematneion Work?
+## How's the implementation Work?
 
 `useGoogleAnalytics.ts`  as custom hook is the **primary** file for integrating with GA.
 We're using an object to handle GA integration for flexibility and future-proofing.
