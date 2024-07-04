@@ -13,6 +13,10 @@ GA collects data from your website using a JavaScript tracking code that you emb
 `useGoogleAnalytics.ts`  as custom hook is the **primary** file for integrating with GA.
 We're using an object to handle GA integration for flexibility and future-proofing.
 
+`GoogleAnalyticsProvider.tsx` as a provider component to wrap the `Routes` 
+
+`App.tsx` modify your file by add `GoogleAnalyticsProvider` component 
+
 **This approach allows us to:** :recycle: 
 
 * Support multiple: functionalities, easily manage page views, event tracking, and post-initialization configurations.
